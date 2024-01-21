@@ -1,0 +1,31 @@
+class Solution:
+	# @param A : head node of linked list
+	# @return the head node in the linked list
+    
+    def insertNode(self, head, node) :   
+        h = head 
+        while head.next and head.next.val <= node.val :
+            head = head.next 
+        if not head.next :
+            head.next = node 
+            return h
+        temp = head.next 
+        head.next = node
+        node.next = temp 
+        return h
+        
+        
+	def insertionSortList(self, head):
+        h = ListNode(-1)
+        
+        curr = head 
+        while curr :        
+            temp = curr.next 
+            curr.next = None
+            self.insertNode(h, curr)
+            curr = temp 
+        return h.next 
+            
+''' time complexity : O(n^2)    insertion sorting with linked list        
+    space complexity : O(1)
+'''
