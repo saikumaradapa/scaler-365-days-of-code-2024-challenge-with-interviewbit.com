@@ -1,0 +1,53 @@
+class Solution:    
+    def reverse(self, head) :
+        prev = None 
+        curr = head 
+        while curr :
+            temp = curr.next 
+            curr.next = prev 
+            prev = curr 
+            curr = temp 
+        return prev 
+               
+    def solve(self, A, B):
+        slow, fast = A, A
+        while fast and fast.next :
+            slow = slow.next 
+            fast = fast.next.next 
+        slow.next = None 
+        curr = self.reverse(A)
+        
+        while curr and B != 0 :
+            curr = curr.next 
+            B -= 1
+        if curr :
+            return curr.val 
+        return -1
+        
+''' time complexity : O(n)      approach1 
+    space complexity : O(1)
+'''
+
+############################################################################################################################################################################################################################
+
+
+class Solution:
+    def solve(self, A, B):
+        n = 0
+        h = A 
+        while A :
+            n += 1
+            A = A.next         
+        if B > n // 2 :
+            return -1        
+        n = (n//2)  - B 
+        while h :
+            if n == 0 :
+                return h.val 
+            h = h.next 
+            n -= 1
+        return -1 
+            
+''' time complexity : O(n)        approach2
+    space complexity : O(1)
+'''
