@@ -1,7 +1,4 @@
-class Solution:
-	# @param A : head node of linked list
-	# @return the head node in the linked list
-    
+class Solution:    
     def insertNode(self, head, node) :   
         h = head 
         while head.next and head.next.val <= node.val :
@@ -26,6 +23,29 @@ class Solution:
             curr = temp 
         return h.next 
             
-''' time complexity : O(n^2)    insertion sorting with linked list        
+''' time complexity : O(n^2)    insertion sorting with linked list        # approach1, altering nodes 
+    space complexity : O(1)
+'''
+
+
+####################################################################################################################################################################################
+
+
+class Solution:
+	# @param A : head node of linked list
+	# @return the head node in the linked list
+	def insertionSortList(self, A):
+        
+        temp = A
+        while temp :
+            curr = A 
+            while curr and curr != temp :
+                if curr.val > temp.val :
+                    curr.val, temp.val = temp.val, curr.val 
+                curr = curr.next 
+            temp = temp.next 
+        return A 
+
+''' time complexity : O(n^2)                            # approach2, inplace solution 
     space complexity : O(1)
 '''
