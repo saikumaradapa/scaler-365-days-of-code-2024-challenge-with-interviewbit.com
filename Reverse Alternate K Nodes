@@ -1,0 +1,36 @@
+class Solution:
+    def reverse(self, h) :
+        prev = None 
+        while h :
+            temp = h.next 
+            h.next = prev 
+            prev = h 
+            h = temp 
+        return prev 
+    def solve(self, A, B):
+        curr = A 
+        h = dummy = ListNode(-1)
+        flag = True
+        temp = None  
+        while curr :
+            c = 1 
+            start = curr 
+            while curr and c != B :
+                curr = curr.next 
+                c += 1
+            if curr :
+                temp = curr.next 
+                curr.next = None 
+            if flag :
+                start = self.reverse(start)
+            h.next = start 
+            while h.next :
+                h = h.next 
+            curr = temp 
+            flag = not flag 
+        return dummy.next 
+
+
+''' time complexity : O(n * B)
+    space complexity : O(1)
+'''
