@@ -1,0 +1,62 @@
+class Solution:            
+    def addTwoNumbers(self, A, B):
+        carry = 0
+        h = dummy = ListNode(-1)
+        while A or B :
+            a = A.val if A else 0
+            b = B.val if B else 0
+            
+            node = ListNode((a+b+carry)%10 )
+            h.next = node 
+            carry = (a+b+carry)//10 
+            h = h.next 
+            A = A.next if A else A
+            B = B.next if B else B
+        if carry :
+            h.next = ListNode(1)
+        return dummy.next
+
+''' time complexity : O(n)
+    space complexity : O(1)     if ignoring the resultant list 
+'''
+
+
+
+
+############################################################################################################################################################################################################################
+
+# without creating a new list to result, modifying in A 
+
+class Solution:            
+    def addTwoNumbers(self, A, B):
+        carry = 0
+        newA = A 
+        prevA = A 
+        while A or B :
+            a = A.val if A else 0
+            b = B.val if B else 0
+
+            s = (a+b+carry)%10
+            carry = (a+b+carry)//10
+            
+            if A :
+                A.val = s 
+            else : 
+                A = ListNode(s)
+                prevA.next = A       
+                
+                
+            prevA = A 
+            A = A.next if A else None
+            B = B.next if B else None
+            
+        if carry :
+            A = ListNode(1)
+            prevA.next = A       
+        return newA
+            
+            
+            
+''' time complexity : O(n)
+    space complexity : O(1)   
+'''
