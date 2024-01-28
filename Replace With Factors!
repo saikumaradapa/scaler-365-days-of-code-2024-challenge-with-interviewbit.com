@@ -1,0 +1,11 @@
+class Solution:
+    def solve(self, A, B):
+        curr = A 
+        while curr :
+            curr.val = (curr.val//B) * B
+            curr = curr.next 
+        return A 
+
+''' time complexity : O(n)            
+    space complexity : O(1)
+'''
