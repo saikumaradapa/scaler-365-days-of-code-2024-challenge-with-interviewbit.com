@@ -1,0 +1,38 @@
+class Solution:
+    def reverse(self, head):
+        prev = None
+        while head:
+            temp = head.next
+            head.next = prev
+            prev = head
+            head = temp
+        return prev
+
+    def reverseBetween(self, head, m, n):
+        dummy = ListNode(-1)
+        dummy.next = head
+        first, second = dummy, dummy
+
+        for _ in range(n - m):
+            second = second.next
+
+        prev = first
+        
+        for _ in range(m):
+            prev = first
+            first, second = first.next, second.next
+
+        second_next = second.next
+        second.next = None
+
+        reversed_head = self.reverse(first)
+
+        prev.next = reversed_head
+        first.next = second_next
+
+        return dummy.next
+ 
+
+''' time complexity : O(n)
+    space complexity : O(1)
+'''
