@@ -1,0 +1,49 @@
+class Solution:
+    
+    def findMid(self, h) :
+        dummy = ListNode(-1)
+        dummy.next = h 
+        slow, fast = dummy, dummy
+        while fast and fast.next :
+            slow, fast = slow.next, fast.next.next 
+        return slow 
+        
+    def reverse(self, curr) :
+        prev = None 
+        while curr :
+            next = curr.next 
+            curr.next = prev
+            prev = curr
+            curr = next 
+        return prev 
+            
+	def reorderList(self, A):
+        if not A or not A.next : return A 
+        
+        curr = dummy = ListNode(-1)
+        temp = self.findMid(A)
+        secondHalf = temp.next 
+        temp.next = None 
+        
+        secondHalf = self.reverse(secondHalf)
+        
+        flag = True 
+        while A or secondHalf :
+            if flag :
+                curr.next = A 
+                A = A.next 
+            else :
+                curr.next = secondHalf
+                secondHalf = secondHalf.next 
+            curr = curr.next 
+            flag = not flag
+        if A :
+            curr.next = A 
+        if secondHalf :
+            curr.next = secondHalf
+        return dummy.next 
+        
+        
+''' time complexity : O(n)        
+    space complexity : O(1)
+'''
