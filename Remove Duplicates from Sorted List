@@ -1,0 +1,15 @@
+class Solution:
+	def deleteDuplicates(self, A):
+		dummy = curr = ListNode(-1)
+		curr.next = A 	
+                                
+		while curr and curr.next :
+			while curr and curr.next and curr.val == curr.next.val :
+				curr.next = curr.next.next 
+                
+			curr = curr.next 
+		return dummy.next 
+
+''' time complexity : O(n)
+    space complexity : O(1)
+'''
