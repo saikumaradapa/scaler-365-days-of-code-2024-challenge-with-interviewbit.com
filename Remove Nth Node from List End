@@ -1,0 +1,21 @@
+class Solution:
+	def removeNthFromEnd(self, A, B):
+		curr = dummy = ListNode(-1)
+		curr.next = A
+		right = curr
+		for i in range(B) :
+			if right and right.next :
+				right = right.next 
+		if not right :
+			return A.next 
+		
+		left = dummy 
+		while right and right.next :
+			left, right = left.next, right.next 
+		left.next = left.next.next
+		
+		return dummy.next 
+
+''' time complexity : O(n)			
+	space complexity : O(1)
+'''
