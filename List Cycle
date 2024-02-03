@@ -1,0 +1,15 @@
+class Solution:
+    def detectCycle(self, A):
+        slow, fast = A, A 
+        while fast and fast.next :
+            slow, fast = slow.next, fast.next.next 
+            if slow == fast :
+                slow = A  
+                while slow != fast :
+                    slow, fast = slow.next, fast.next 
+                return slow 
+        return None 
+        
+''' time complexity : O(n)        
+    space complexity : O(1)
+'''
