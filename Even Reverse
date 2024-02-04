@@ -1,0 +1,55 @@
+class Solution:
+    def solve(self, A):
+        if not A or not A.next : return A 
+        
+        ohead = odd = ListNode(-1)
+        ehead = even = ListNode(-1)
+        
+        curr = A 
+        
+        i = 1 
+        while curr :
+            if i % 2 == 1 :
+                odd.next = curr 
+                odd = odd.next 
+            else :
+                even.next = curr 
+                even = even.next 
+            i += 1 
+            curr = curr.next 
+        even.next = None
+        odd.next = None 
+
+        
+        prev = None 
+        curr = ehead.next 
+        while curr :
+            next = curr.next 
+            curr.next = prev 
+            prev = curr
+            curr = next 
+        
+        dummy = curr = ListNode(-1)
+        ohead = ohead.next 
+        flag = True 
+        
+        while prev and ohead :
+            if flag :
+                curr.next = ohead 
+                ohead = ohead.next 
+            else :
+                curr.next = prev
+                prev = prev.next 
+            curr = curr.next 
+            flag = not flag 
+            
+        if ohead :
+            curr.next = ohead 
+        if prev :
+            curr.next = prev 
+            
+        return dummy.next         
+        
+''' time complexity : O(n)        
+    space complexity : O(1)
+'''
