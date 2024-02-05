@@ -1,0 +1,30 @@
+class Solution:
+	def rotateRight(self, A, B):                        
+        n = 0
+        h = A 
+        while h :
+            n += 1
+            h = h.next 
+        
+        B = B % n        
+        if B == 0 or not A or not A.next : 
+            return A 
+
+        left = right = dummy = ListNode(-1)
+        dummy.next = A 
+        while B > 0 :
+            right = right.next 
+            B -= 1
+        
+        while right and right.next :
+            left = left.next 
+            right = right.next
+        temp = left.next 
+        left.next = None
+        
+        right.next = dummy.next         
+        return temp
+        
+''' time complexity : O(n)        
+    space complexity : O(1)
+'''
