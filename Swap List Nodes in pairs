@@ -1,0 +1,20 @@
+class Solution:
+	def swapPairs(self, A):
+		if not A or not A.next : return A 
+		
+		curr = dummy = ListNode(-1)
+		curr.next = A 
+		
+		while curr.next and curr.next.next :
+			t1 = curr.next 
+			t2 = t1.next 
+			
+			curr.next = t2 
+			t1.next = t2.next 
+			t2.next = t1 
+			curr = t1 
+		return dummy.next 
+
+''' time complexity : O(n)			
+	space complexity : O(1)
+'''
