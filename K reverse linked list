@@ -1,0 +1,35 @@
+class Solution:
+	def reverseList(self, A, k):
+        dummy = ListNode(-1)
+        dummy.next = A 
+        
+        groupPrev = dummy 
+        while True :
+            kth = self.getKth(groupPrev, k)
+            if not kth :
+                break 
+                
+            groupNext = kth.next 
+            
+            prev, curr = groupNext, groupPrev.next 
+            while curr != groupNext :
+                next = curr.next 
+                curr.next = prev
+                prev = curr
+                curr = next 
+            
+            temp = groupPrev.next 
+            groupPrev.next = kth 
+            groupPrev = temp
+            
+        return dummy.next 
+        
+    def getKth(self, curr, k) :
+        while curr and k>0 :
+            curr = curr.next 
+            k -= 1
+        return curr 
+        
+''' time complexity : O(n)        
+    space complexity : O(1)
+'''
