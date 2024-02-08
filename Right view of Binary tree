@@ -1,0 +1,30 @@
+from collections import deque 
+class Solution:
+    def solve(self, A):
+        if not A : return []
+        res = []
+        
+        q = deque()
+        q.append(A)
+        while q :
+            n = len(q)
+            lastElement = None 
+            for i in range(n) :                
+                node = q.popleft()
+                
+                if node.left :
+                    q.append(node.left)
+                if node.right :
+                    q.append(node.right)                    
+                
+                if i == n-1 :
+                    lastElement = node.val 
+                
+                
+            if lastElement :
+                res.append(lastElement)
+        return res
+        
+''' time complexity : O(n)        
+    space complexity : O(n)
+'''
