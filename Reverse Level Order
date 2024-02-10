@@ -1,0 +1,26 @@
+from collections import deque 
+class Solution:
+    def solve(self, A):
+        if not A : return []
+        res = []
+        q = deque([A])
+        while q :
+            n = len(q)
+            level = []
+            for i in range(n) :
+                node = q.popleft()
+                if node :
+                    level.append(node.val)
+                    q.append(node.left)
+                    q.append(node.right)
+            if level :
+                res.append(level)
+                
+        levelOrder = []
+        for level in res[::-1] :
+            levelOrder.extend(level)
+        return levelOrder
+        
+''' time complexity : O(n)
+    space complexity : O(n)
+'''
