@@ -1,0 +1,8 @@
+class Solution:
+	def maxDepth(self, A):
+        if not A : return 0 
+        return 1 + max(self.maxDepth(A.left), self.maxDepth(A.right))
+
+''' time complexity : O(n)        
+    space complexity : O(1)
+'''
