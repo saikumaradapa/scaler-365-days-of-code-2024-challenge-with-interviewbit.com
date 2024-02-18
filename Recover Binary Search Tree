@@ -1,0 +1,27 @@
+class Solution:
+	# @param A : root node of tree
+	# @return a list of integers
+	def recoverTree(self, A):
+        first = middle = second = prev = None 
+        prev = TreeNode(float("-inf"))
+        def inorder(root) :
+            if root :
+                nonlocal first, second, middle, prev 
+                inorder(root.left)
+                if prev.val > root.val :
+                    if not first :
+                        first = prev
+                        middle = root 
+                    else :
+                        second = root
+                prev = root 
+                inorder(root.right)
+        inorder(A)
+        if second :
+            return [first.val, second.val] if first.val < second.val else [second.val, first.val]
+        else :
+            return [first.val, middle.val] if first.val < middle.val else [middle.val, first.val]
+			
+''' time complexity : O(n)			
+	space complexity : O(1)
+'''
