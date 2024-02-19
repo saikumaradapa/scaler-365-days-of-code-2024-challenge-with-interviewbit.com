@@ -1,0 +1,47 @@
+class Solution:
+    def solve(self, A, B):
+        stack = []
+        
+        def dfs(root) :           
+            if not root :
+                return False 
+            stack.append(root.val)
+            if root.val == B :
+                return True 
+                
+            if dfs(root.left) or dfs(root.right) :
+                return True 
+
+            stack.pop()
+            return False 
+        
+        dfs(A)
+        return stack
+            
+                
+''' time complexity : O(n)            
+    space complexity : O(n)
+'''
+
+
+############################################################################################################################
+
+
+class Solution:
+    def solve(self, A, target):
+        def dfs(node, path):
+            if not node:
+                return []
+            if node.val == target:
+                return path + [node.val]
+            left_path = dfs(node.left, path + [node.val])
+            right_path = dfs(node.right, path + [node.val])
+            return left_path or right_path
+        
+       
+        return dfs(A, [])
+            
+                
+''' time complexity : O(n)            
+    space complexity : O(n)
+'''
