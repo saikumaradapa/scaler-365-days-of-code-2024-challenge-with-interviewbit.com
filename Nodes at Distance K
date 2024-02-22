@@ -1,0 +1,55 @@
+from collections import deque
+class Solution:
+    def findParent(self, root, val) :
+        parentNode = None 
+        parentSet = dict()
+        q = deque([root])
+        while q :
+            node = q.popleft()
+            if node :
+                if node.val == val :
+                    parentNode = node 
+                if node.left :
+                    parentSet[node.left] = node
+                    q.append(node.left)
+                if node.right :
+                    parentSet[node.right] = node 
+                    q.append(node.right)
+        return parentNode, parentSet
+                        
+    
+    def distanceK(self, A, B, C):
+        startNode, parentSet = self.findParent(A, B)
+        
+        visited = set()
+        visited.add(startNode)
+        q = deque([startNode])
+        k = 1
+        
+        while q :
+            n = len(q)
+            level = []
+            for i in range(n):
+                node = q.popleft()
+                if node : 
+                    if node.left and node.left not in visited :
+                        q.append(node.left)
+                        level.append(node.left.val)
+                        visited.add(node.left)
+                    if node.right and node.right not in visited :
+                        q.append(node.right)
+                        level.append(node.right.val)
+                        visited.add(node.right)
+                    if node in parentSet and parentSet[node] not in visited :
+                        q.append(parentSet[node])
+                        level.append(parentSet[node].val)
+                        visited.add(parentSet[node])
+           
+            if k == C :
+                return level
+            k += 1
+        return []
+
+''' time complexity : O(n)                                                                    
+    space complexity : O(n)
+'''
