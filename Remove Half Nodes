@@ -1,0 +1,21 @@
+class Solution:
+    def solve(self, root):
+        if not root :
+            return root 
+        
+        if root.left :
+            root.left = self.solve(root.left)
+        if root.right :
+            root.right = self.solve(root.right)
+        
+        if root.left and not root.right :
+            root = root.left        
+        elif root.right and not root.left :
+            root = root.right 
+        
+        
+        return root 
+
+''' time complexity : O(n)
+    space complexity : O(1) with out recursion stack 
+'''
