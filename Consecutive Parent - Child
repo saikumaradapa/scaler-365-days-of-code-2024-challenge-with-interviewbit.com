@@ -1,0 +1,20 @@
+class Solution:
+    def consecutiveNodes(self, A):
+        res = [0]  # Make res a mutable list
+        self.dfs(A, res)
+        return res[0]
+        
+    def dfs(self, root, res):
+        if not root :
+            return 
+        if root.left and abs(root.val - root.left.val) == 1:
+            res[0] += 1
+        if root.right and abs(root.val - root.right.val) == 1:
+            res[0] += 1
+            
+        self.dfs(root.left, res)
+        self.dfs(root.right, res)
+
+''' time complexity : O(n)                
+    space complexity : O(1)
+'''
