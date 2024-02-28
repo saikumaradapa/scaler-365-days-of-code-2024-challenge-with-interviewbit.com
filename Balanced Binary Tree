@@ -1,0 +1,23 @@
+class Solution:
+    def isBalanced(self, A):
+        def dfs(root):
+            if not root:
+                return (0, True)
+            
+            if not root.left and not root.right:
+                return (1, True)
+            
+            l_h, l_s = dfs(root.left)
+            r_h, r_s = dfs(root.right)
+            
+            if l_s and r_s and abs(l_h-r_h) <= 1:
+                return (1+max(l_h, r_s), True)
+            
+            return (1+max(l_h, r_h), False)
+        
+        res = dfs(A)
+        return 1 if res[1] else 0
+        
+''' time complexity : O(n)        
+    space complexity : O(1)
+'''
