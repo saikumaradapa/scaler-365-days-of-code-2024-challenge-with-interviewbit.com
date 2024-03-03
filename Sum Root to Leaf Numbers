@@ -1,0 +1,22 @@
+class Solution:
+    def dfs(self, root, res, curr):
+        if not root: return
+        
+        curr += str(root.val)
+        if not root.left and not root.right:
+            if curr:
+                res[0] += int(curr)
+            return 
+        
+        self.dfs(root.left, res, curr)
+        self.dfs(root.right, res, curr)
+    
+    
+	def sumNumbers(self, A):
+        res = [0]
+        self.dfs(A, res,  '')
+        return res[0]%1003
+
+''' time complexity : O(n)
+    space complexity : O(1)            # ignoring recursion stack 
+'''
