@@ -1,0 +1,19 @@
+class Solution:
+	def dfs(self, root, target):
+		if not root:
+			return False 
+		
+		if not root.left and not root.right and root.val == target:
+			return True 
+		
+		left = self.dfs(root.left, target-root.val)
+		right = self.dfs(root.right, target-root.val)
+		
+		return left or right 
+	
+	def hasPathSum(self, A, B):
+		return 1 if self.dfs(A, B) else 0
+
+''' time complexity : O(n)
+	space complexity : O(1)
+'''
