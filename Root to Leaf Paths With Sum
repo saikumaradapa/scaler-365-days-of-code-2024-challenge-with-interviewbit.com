@@ -1,0 +1,21 @@
+class Solution:
+    def dfs(self, root, curr, target, currSum, res):
+        if not root: return 
+        
+        if not root.left and not root.right:
+            if currSum + root.val == target:
+                temp = curr + [root.val]
+                res.append(temp[:])            
+            return 
+            
+        self.dfs(root.left, curr + [root.val], target, currSum + root.val, res)
+        self.dfs(root.right, curr + [root.val], target, currSum + root.val, res) 
+        
+	def pathSum(self, A, B):
+        res = []
+        self.dfs(A, [], B, 0, res)
+        return res
+
+''' time complexity : O(n)        
+    space complexity : O(n)    
+'''
