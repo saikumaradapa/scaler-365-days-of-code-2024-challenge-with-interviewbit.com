@@ -1,0 +1,16 @@
+class Solution:
+    def dfs(self, left, right):
+        if not left or not right:
+            return left == right 
+        
+        l = self.dfs(left.left, right.right)
+        r = self.dfs(left.right, right.left)
+        
+        return l and r and left.val == right.val 
+        
+	def isSymmetric(self, A):
+        return 1 if self.dfs(A.left, A.right) else 0
+
+''' time complexity : O(n)
+    space complexity : O(1)
+'''
