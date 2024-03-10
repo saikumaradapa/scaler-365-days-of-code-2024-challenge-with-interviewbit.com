@@ -1,0 +1,18 @@
+from collections import deque, defaultdict
+class Solution: 
+    def solve(self, A):
+        if not A : return []
+        res = []
+        q = deque([A])
+        while q:
+            curr = q.popleft()
+            while curr:
+                res.append(curr.val)
+                if curr.left:
+                    q.append(curr.left)
+                curr = curr.right 
+        return res
+        
+''' time complexity : O(n)
+    space complexity : O(n)
+'''
