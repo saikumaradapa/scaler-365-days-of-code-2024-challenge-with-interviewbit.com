@@ -1,0 +1,24 @@
+from collections import defaultdict, deque
+class Solution:
+    def verticalSum(self, A):
+        dit = defaultdict(int)
+        q = deque([(A, 0, 0)])
+        minIdx, maxIdx = 0, 0
+        while q:
+            node, r, c = q.popleft()
+            if node:
+                dit[c] += node.val 
+                q.append((node.left, r+1, c-1))
+                q.append((node.right, r+1, c+1))
+                minIdx = min(minIdx, c)
+                maxIdx = max(maxIdx, c)
+
+        res = []
+        for idx in range(minIdx, maxIdx+1):
+            if idx in dit:
+                res.append(dit[idx])
+        return res
+
+''' time complexity : O(n)
+    space complexity : O(n)
+'''
