@@ -1,0 +1,56 @@
+class TrieNode:
+    def __init__(self):
+        self.children = [None] * 2
+
+    def containsBit(self, bit):
+        return self.children[bit] != None
+
+    def put(self, bit, children):
+        self.children[bit] = children
+
+    def get(self, bit):
+        return self.children[bit]
+
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, num):
+        curr = self.root
+
+        for i in range(31, -1, -1):
+            bit = (num >> i) & 1
+            if not curr.containsBit(bit):
+                curr.put(bit, TrieNode())
+            curr = curr.get(bit)
+
+    def getMax(self, num):
+        curr = self.root
+
+        maxVal = 0
+        for i in range(31, -1, -1):
+            bit = (num >> i) & 1
+            if curr.containsBit(1-bit):
+                maxVal = maxVal | (1 << i)
+                curr = curr.get(1-bit)
+            else:
+                curr = curr.get(bit)
+        return maxVal
+
+
+class Solution:
+    def solve(self, A, B):
+        t = Trie()
+        for num in A:
+            t.insert(num)
+
+        maxVal = 0
+        for num in B:
+            maxVal = max(maxVal, t.getMax(num))
+
+        return maxVal       
+        
+''' time compleixity : O(n + m)        
+    space compleixity : we can't calculate exactly but each node takes O(2) 
+'''
