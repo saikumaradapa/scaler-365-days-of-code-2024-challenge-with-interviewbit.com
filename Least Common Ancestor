@@ -1,0 +1,32 @@
+class Solution:
+    
+    def findPath(self, root, node, path):
+        if not root:
+            return False
+        path.append(root)
+        if root.val == node:
+            return True
+        if self.findPath(root.left, node, path) or self.findPath(root.right, node, path):
+            return True
+        path.pop()
+        return False    
+
+
+	def lca(self, root, p, q):
+        stack = [[], []]
+        lca = None 
+
+        self.findPath(root, p, stack[0])
+        self.findPath(root, q, stack[1])
+
+        for node1, node2 in zip(stack[0], stack[1]):
+            if node1 == node2:
+                lca = node1
+            else:
+                break
+
+        return lca.val if lca else -1
+        
+''' time complexity : O(n)  
+    space complexity : O(n)
+'''
