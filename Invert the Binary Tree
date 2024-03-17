@@ -1,0 +1,15 @@
+class Solution:
+	def invertTree(self, A):
+		if not A: return A
+		
+		left = self.invertTree(A.left)		
+		right = self.invertTree(A.right)
+		
+		A.left = right 
+		A.right = left 
+		
+		return A 
+		
+''' time complexity : O(n)
+	  space complexity : O(1)
+'''
