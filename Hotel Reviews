@@ -1,0 +1,56 @@
+class TrieNode:
+    def __init__(self):
+        self.children = [None] * 26
+        self.endsWith = False 
+
+    def containKey(self, ch):
+        return self.children[ord(ch) - ord('a')] is not None
+
+    def put(self, ch, children):
+        self.children[ord(ch) - ord('a')] = children
+
+    def get(self, ch):
+        return self.children[ord(ch) - ord('a')]
+
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        curr = self.root
+        for ch in word:
+            if not curr.containKey(ch):
+                curr.put(ch, TrieNode())
+            curr = curr.get(ch)
+        curr.endsWith = True 
+
+    def searchWord(self, word):
+        curr = self.root
+        for ch in word:
+            if not curr.containKey(ch):
+                return False
+            curr = curr.get(ch)
+        return curr.endsWith
+
+
+class Solution:
+    def solve(self, A, B):
+        t = Trie()
+        
+        for word in A.split("_"):
+            t.insert(word)
+        
+        res = []
+        for i, review in enumerate(B):
+            good_words_count = sum(t.searchWord(word) for word in review.split("_"))
+            res.append((good_words_count, i))
+        
+        # Sort the reviews in descending order of good words count and preserve original order
+        res.sort(key=lambda x: (-x[0], x[1]))
+        
+        return [val[1] for val in res]
+
+''' time complexity : O(n logn)
+    space complexity : O(n)               
+'''
