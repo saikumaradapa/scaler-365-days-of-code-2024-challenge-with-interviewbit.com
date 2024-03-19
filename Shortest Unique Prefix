@@ -1,0 +1,49 @@
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.prefixCnt = 0
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        curr = self.root
+
+        for ch in word:
+            if ch not in curr.children:
+                curr.children[ch] = TrieNode()
+			curr.prefixCnt += 1
+            curr = curr.children[ch]
+        
+	
+	def findsup(self, word):
+		res = ""
+		curr = self.root 
+		for ch in word:
+			
+			if curr.prefixCnt > 1:
+                res += ch 				
+				curr = curr.children[ch]
+			else:
+				return res
+		return res 
+				
+
+class Solution:
+	def prefix(self, A):
+		t = Trie()
+		for word in A:
+			t.insert(word)
+		
+		output = []
+		for word in A:
+			output.append(t.findsup(word))
+		
+		return output 
+
+
+
+        
+''' time complexity : O(n)        
+'''
