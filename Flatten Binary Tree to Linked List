@@ -1,0 +1,23 @@
+class Solution:
+    def dfs(self, node, arr):
+        if not node: return node 
+        
+        left, right = node.left, node.right 
+        node.left = node.right = None 
+        
+        if not arr:
+            arr.append(node)
+        else:
+            arr[-1].right = node
+            arr[-1] = node 
+            
+        self.dfs(left, arr)
+        self.dfs(right, arr)
+        
+    def flatten(self, A):        
+        self.dfs(A, [])
+        return A 
+
+''' time complexity : O(n)                
+    space complexity : O(1) 
+'''
