@@ -1,0 +1,16 @@
+class Solution:
+	def buildTree(self, inorder, postorder):
+        if not postorder or not inorder: return None 
+        
+        root = TreeNode(postorder[-1])
+        
+        idx = inorder.index(postorder[-1])
+        
+        root.left = self.buildTree(inorder[:idx], postorder[:idx])
+        root.right = self.buildTree(inorder[idx+1:], postorder[idx:-1])
+        
+        return root 
+
+''' time complexity : O(n)
+    space complexity : O(1)    for skew tree O(h)
+'''
