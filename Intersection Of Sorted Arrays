@@ -1,0 +1,18 @@
+class Solution:
+	def intersect(self, A, B):
+        res = []        
+        first, second = 0, 0
+        
+        while first<len(A) and second<len(B):
+            if A[first] == B[second]:
+                res.append(A[first])
+                first, second =  first+1, second+1
+            elif A[first] < B[second]:
+                first += 1
+            else:
+                second += 1                           
+        return res
+        
+''' time complexity : O(n + m)         two pointers
+    space complexity : O(1)
+'''
