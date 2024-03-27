@@ -1,0 +1,12 @@
+class Solution:
+    def removeDuplicates(self, A):
+        l = 1
+        for r in range(1, len(A)):
+            if A[r] != A[r-1]:
+                A[l] = A[r]
+                l += 1
+        return l 
+        
+''' time complexity : O(n)        
+    space complexity : O(1)
+'''
