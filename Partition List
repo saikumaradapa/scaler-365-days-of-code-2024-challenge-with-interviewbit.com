@@ -1,0 +1,19 @@
+class Solution:
+	def partition(self, A, B):
+        temp1 = left = ListNode(-1)
+        temp2 = right = ListNode(-1)
+        while A :
+            if A.val < B :
+                left.next = A
+                left = left.next 
+            else :
+                right.next = A 
+                right = right.next                 
+            A = A.next 
+        right.next = None 
+        left.next = temp2.next 
+        return temp1.next 
+        
+''' time complexity : O(n)          
+    space complexity : O(1)
+'''
