@@ -1,0 +1,61 @@
+# BFS 
+
+from collections import deque
+class Solution:
+    def solve(self, A, B):
+        visited = [0] * (A+1)
+        adj = [[] for i in range(A+1)]
+        
+        for u, v in B:
+            adj[u].append(v)
+            
+        q = deque([1])
+        while q:
+            node = q.popleft()
+            if node == A:
+                return 1
+                
+            if visited[node] == 0:
+                visited[node] = 1
+                
+                for adjNode in adj[node]:
+                    if visited[adjNode] == 0:
+                        q.append(adjNode)
+        return 0
+        
+''' time complexity : O(V + E)    
+    space complexity : O(V + E)
+'''
+
+#################################################################################################################################################################################################################################
+
+
+# DFS 
+
+class Solution:
+    def solve(self, A, B):
+        visited = [0] * (A + 1)
+        adj = [[] for _ in range(A + 1)]
+
+        for u, v in B:
+            adj[u].append(v)
+
+        return self.dfs(1, A, adj, visited)
+
+    def dfs(self, start, end, adj, visited):
+        if start == end:
+            return 1
+
+        visited[start] = 1
+
+        for adjNode in adj[start]:
+            if not visited[adjNode]:
+                if self.dfs(adjNode, end, adj, visited):
+                    return 1
+
+        return 0
+
+        
+''' time complexity : O(V + E)    
+    space complexity : O(V + E)
+'''
