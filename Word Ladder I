@@ -1,0 +1,38 @@
+from collections import deque
+class Solution:
+    def solve(self, startWord, targetWord, wordList):
+
+
+        wordSet = set(wordList)
+        
+        q = deque()
+        q.append((startWord, 1))
+
+        if startWord in wordSet :
+            wordSet.remove(startWord)     
+            
+        while q :
+            word, step = q.popleft()
+
+            if word == targetWord :
+                return step
+            
+            arr = list(word)
+            temp = arr.copy()
+            
+            for i in range(len(arr)) :
+                for j in range(26) :
+                    temp[i] = chr(j + ord('a'))
+                    
+                    
+                    currWord = "".join(temp)
+                    if currWord in wordSet :
+                        q.append((currWord, step + 1))
+                        wordSet.remove(currWord)
+                        
+                temp = arr.copy()
+        return 0 
+        
+''' time complexity : O(N * len(word) * 26)        
+    space complexity : O(N)
+'''
