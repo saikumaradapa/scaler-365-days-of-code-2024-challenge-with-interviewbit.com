@@ -1,0 +1,8 @@
+class Solution:
+    def solve(self, A):
+        A.sort()
+        return A[-1]+A[0]
+
+''' time complexity : O(n logn)
+    space complexity : O(1)
+'''
