@@ -1,0 +1,30 @@
+class Solution:
+    def findWood(self, n, A):
+        res = 0
+        for val in A:
+            if val > n:
+                res += val - n                        
+        return res 
+        
+    def solve(self, A, B):
+        res = 0
+        A.sort()
+        left, right = A[0], A[-1]
+
+        while left<=right:
+            mid = (left+right) // 2 
+            
+            wood = self.findWood(mid, A)
+            if wood == B:
+                return mid
+            elif wood<B:            
+                right = mid-1
+            else:     
+                res = max(res, mid)           
+                left = mid+1
+            
+        return res
+        
+''' time complexity :  O(n log n) + O(log(max(A) - min(A)))
+    space complexity : O(1)
+'''
