@@ -1,0 +1,67 @@
+class Solution:
+    
+    def first(self, arr, k):
+        l, r, ans = 0, len(arr) - 1, -1
+        while l <= r:
+            mid = (l + r) // 2
+            if arr[mid] == k:
+                ans = mid
+                r = mid - 1
+            elif arr[mid] < k:
+                l = mid + 1
+            else:
+                r = mid - 1
+        return ans
+
+    def last(self, arr, k):
+        l, r, ans = 0, len(arr) - 1, -1
+        while l <= r:
+            mid = (l + r) // 2
+            if arr[mid] == k:
+                ans = mid
+                l = mid + 1
+            elif arr[mid] < k:
+                l = mid + 1
+            else:
+                r = mid - 1
+        return ans
+
+    def searchRange(self, arr, k):
+        return [self.first(nums, k), self.last(nums, k)]  
+        
+        
+''' time complexity : O(2logn)        
+    space complexity : O(1)
+'''
+
+
+######################################################################################################################################################################################################################################
+
+
+
+
+
+class Solution:
+                
+    def searchRange(self, arr, k):
+        n = len(arr)
+        l, r = 0, n-1
+        while l<= r :
+            mid = (l+r)// 2
+            if arr[mid] == k :
+                a2 = mid
+                while mid > 0 and arr[mid] == arr[mid-1] :
+                    mid = mid-1
+                while a2 < n-1 and arr[a2] == arr[a2+1] :
+                    a2 = a2 + 1
+                return (mid, a2)
+            elif arr[mid] < k :
+                l = mid+1
+            else :
+                r = mid-1
+        return (-1,-1)        
+
+
+''' time complexity : O(n) in worst case, O(logn) on average case 
+    space complexity : O(1)
+'''
