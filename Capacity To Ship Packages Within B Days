@@ -1,0 +1,28 @@
+class Solution:
+    def possible(self, limit, A, B):
+        days = 0
+        curr = 0
+        for val in A:
+            if curr + val <= limit:
+                curr += val 
+            else:
+                curr = val 
+                days += 1
+                
+        return days < B
+        
+    def solve(self, A, B):
+        l, r = max(A), sum(A)
+        while l < r:
+            mid = (l + r) // 2
+            
+            if self.possible(mid, A, B) :
+                r = mid
+            else:
+                l = mid + 1
+
+        return l
+
+''' time complexity : O(n * log(sum(A) - max(A)))                
+    space complexity : O(1)
+'''
