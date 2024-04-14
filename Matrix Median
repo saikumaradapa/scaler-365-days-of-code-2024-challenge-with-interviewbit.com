@@ -1,0 +1,15 @@
+class Solution:
+	def findMedian(self, A):
+        res = []
+        for temp in A:
+            res.extend(temp)
+        res.sort()
+        
+        n = len(res)
+        if n & 1:
+            return res[n//2]
+        return (res[n//2] + res[(n//2) +1]) // 2 
+
+''' time complexity : O(n*m log(n*m))                
+    space complexity : O(n*m)
+'''
