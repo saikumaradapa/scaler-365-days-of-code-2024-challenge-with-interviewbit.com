@@ -4,8 +4,7 @@ class Solution:
 		if not A : return []
 		q = deque([A])
 		res = []
-		flag = False 
-		
+		flag = False 		
 		
 		while q :
 			n = len(q) 
