@@ -13,7 +13,8 @@ class Solution:
         right.next = None 
         left.next = temp2.next 
         return temp1.next 
-        
+
+
 ''' time complexity : O(n)          
     space complexity : O(1)
 '''
