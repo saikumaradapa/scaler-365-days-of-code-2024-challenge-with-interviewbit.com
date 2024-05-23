@@ -21,8 +21,6 @@ class Solution:
 '''
 
 
-
-
 ############################################################################################################################################################################################################################
 
 # without creating a new list to result, modifying in A 
@@ -54,8 +52,7 @@ class Solution:
             A = ListNode(1)
             prevA.next = A       
         return newA
-            
-            
+
             
 ''' time complexity : O(n)
     space complexity : O(1)   
