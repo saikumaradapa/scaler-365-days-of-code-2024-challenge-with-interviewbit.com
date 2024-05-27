@@ -1,11 +1,10 @@
 class Solution:
-	def preorderTraversal(self, A):
-		res = []
-		
-		def preorder(root):
-			if root:
-				res.append(root.val)
-				preorder(root.left)				
-				preorder(root.right)
-		preorder(A)
-		return res
+    def preorderTraversal(self, A):
+    res = []
+        def preorder(root):
+        if root:
+            res.append(root.val)
+            preorder(root.left)				
+            preorder(root.right)
+    preorder(A)
+    return res
