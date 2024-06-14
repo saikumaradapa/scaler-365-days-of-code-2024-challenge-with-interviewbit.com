@@ -4,7 +4,7 @@ class BSTIterator:
         while root :
             self.stack.append(root)
             root = root.left 
-        
+
     # O(1)
     def hasNext(self):
         return True if self.stack else False 
@@ -22,3 +22,5 @@ class BSTIterator:
 ''' time complexity : O(n)
     space complexity : O(h)
 '''
+
+
